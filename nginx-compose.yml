@@ -1,7 +1,6 @@
-version: '3.8'
+version: "3.8"
 
 services:
-
   nginx:
     image: nginx:alpine
     ports:
@@ -9,14 +8,15 @@ services:
       - "443:443"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/nginx-selfsigned.crt:/etc/ssl/nginx-selfsigned.crt
+      - ./nginx/nginx-selfsigned.key:/etc/ssl/certs/nginx-selfsigned.key
     networks:
       - backend
     deploy:
       placement:
         constraints:
-          - node.hostname == manager1
+          - node.label.nginx == true
 
 networks:
   backend:
     external: true
-
