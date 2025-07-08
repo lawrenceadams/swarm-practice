@@ -164,6 +164,8 @@ resource "aws_instance" "node01" {
 
                 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
                 sudo usermod -aG docker ubuntu
+
+                git clone https://github.com/lawrenceadams/swarm-practice.git
               EOF
 
   tags = {
